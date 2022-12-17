@@ -2,7 +2,7 @@
 
 Project 07: Solve problems using algorithms in Python
 
-The steps to follow to run the main program :
+The steps to follow for running the main program :
 
     I. Preparation of the project environment
         1. Download and install Python version 3.10
