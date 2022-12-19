@@ -2,13 +2,7 @@ import csv
 import time
 from itertools import combinations
 
-
-def choose_file() -> str:
-    number = input("Please, enter 0 or 1 or 2 for choosing a csv file : ")
-    if number in ["0", "1", "2"]:
-        return "dataset" + number
-    else:
-        return choose_file()
+PRICE_MAX = 500
 
 
 def get_data_csv(file_name: str) -> list:
@@ -37,30 +31,29 @@ def actions_profit(actions: list) -> float:
     return round(sum_profits, 3)
 
 
-def first_invest(actions: list) -> list:
-    list_actions = []
-    price_max = 500
-    # sort by profit pourcentage
-    actions = sorted(actions, key=lambda d: d[2], reverse=True)
-    for action in actions:
-        if price_max >= action[1]:
-            list_actions.append(action)
-            price_max -= action[1]
-    return list_actions
+def display_result(file_name, best_actions: list):
+    print(f"The chosen file is {file_name}.csv which contains the all actions data")
+
+    # sort by price the data of best actions to buy
+    best_actions = sorted(best_actions, key=lambda d: d[1], reverse=True)
+    print("\nThe data of", len(best_actions), "best actions :")
+    for action in best_actions:
+        print(action)
+
+    print("\nTotal cost :", actions_price(best_actions), "€")
+
+    print("Total profit :", actions_profit(best_actions), "€")
 
 
-def best_invest(actions: list) -> list:
+def brute_force(file_name: str) -> list:
+    actions = get_actions(get_data_csv(file_name))
     best_combination = []
-    price_max = 500
     profit_max = 0
-    # sort by profit pourcentage
-    actions = sorted(actions, key=lambda d: d[2], reverse=True)
-    number_combinations = len(actions)
-    for i in range(1, number_combinations):
+    for i in range(1, len(actions) + 1):
         for combination in combinations(actions, i):
             # get a sum of prices for each combination
             price = actions_price(list(combination))
-            if price <= price_max:
+            if price <= PRICE_MAX:
                 # get a sum of profits for each combination
                 profit = actions_profit(list(combination))
                 if profit > profit_max:
@@ -69,34 +62,15 @@ def best_invest(actions: list) -> list:
     return best_combination
 
 
-def brute_force(file_name: str):
-    print(f"The chosen file is {file_name}.csv")
+def brute_force_result():
+    csv_file = "dataset0"
     start = time.time()
-    list_of_actions = get_actions(get_data_csv(file_name))
-
-    print("Price of actions :", actions_price(list_of_actions), "€")
-
-    print("Profit of actions :", actions_profit(list_of_actions), "€")
-
-    # Display all actions to buy with 500 euro for the first combination
-    # best_actions_to_buy = first_invest(list_of_actions)
-    # Display all actions to buy with 500 euro for the best combination
-
-    best_actions_to_buy = best_invest(list_of_actions)
-
-    print("\nNumber of actions to buy :", len(best_actions_to_buy))
-    best_actions_to_buy = sorted(best_actions_to_buy, key=lambda d: d[1], reverse=True)
-    for best_action in best_actions_to_buy:
-        print(best_action)
-
-    print("\nPrice of actions to buy :", actions_price(best_actions_to_buy), "€")
-
-    print("Profit of actions to buy :", actions_profit(best_actions_to_buy), "€")
-
+    result = brute_force(csv_file)
+    # Display the data of best actions to buy with 500 € for the best combination
+    display_result(csv_file, result)
     end = time.time()
-    print("\nDuration of execution :", end - start, "seconds.")
+    print("\nDuration of program running :", round(end-start, 2), "seconds.")
 
 
 if __name__ == "__main__":
-    csv_file = choose_file()
-    brute_force(csv_file)
+    brute_force_result()
