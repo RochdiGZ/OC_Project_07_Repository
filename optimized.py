@@ -1,6 +1,8 @@
 import csv
 import time
 
+PRICE_MAX = 500
+
 
 def get_data_csv(file_name: str) -> list:
     with open(f"dataset/{file_name}.csv", "r", encoding="utf-8") as f:
@@ -14,7 +16,7 @@ def get_data_csv(file_name: str) -> list:
 def get_actions(data: list) -> list:
     actions = []
     for i in range(1, len(data)):
-        if float(data[i][1]) > 0 and float(data[i][2]) > 0 and len(actions) < 21:
+        if float(data[i][1]) > 0 and float(data[i][2]) > 0:
             actions.append((data[i][0], float(data[i][1]), float(data[i][2])))
     return actions
 
@@ -29,40 +31,31 @@ def actions_profit(actions: list) -> float:
     return round(sum_profits, 3)
 
 
-def best_invest(actions: list) -> list:
+def display_result(file_name, best_actions: list):
+    print(f"The chosen file is {file_name}.csv which contains the all actions data")
+
+    # sort by price the data of best actions to buy
+    best_actions = sorted(best_actions, key=lambda d: d[1], reverse=True)
+    print("\nThe", len(best_actions), "best actions to buy:")
+    for action in best_actions:
+        print(action[0])
+
+    print("\nTotal cost :", actions_price(best_actions), "€")
+
+    print("Total profit :", actions_profit(best_actions), "€")
+
+
+def best_invest(file_name: str) -> list:
+    actions = get_actions(get_data_csv(file_name))
     # sort by profit pourcentage the all data
     actions = sorted(actions, key=lambda d: d[2], reverse=True)
     list_actions = []
-    price_max = 500
+    price_max = PRICE_MAX
     for action in actions:
         if price_max >= action[1]:
             list_actions.append(action)
             price_max -= action[1]
     return list_actions
-
-
-def display_result(best_actions: list):
-    print("\nThe number of best actions to buy :", len(best_actions))
-
-    # sort by price the data of best actions to buy
-    best_actions = sorted(best_actions, key=lambda d: d[1], reverse=True)
-    print("The data of best actions to buy :")
-    for action in best_actions:
-        print(action)
-
-    print("\nThe price of best actions to buy :", actions_price(best_actions), "€")
-
-    print("The profit of best actions to buy :", actions_profit(best_actions), "€")
-
-
-def optimized_invest(file_name: str) -> list:
-    print(f"The chosen file is {file_name}.csv which contains the all actions data")
-
-    list_of_actions = get_actions(get_data_csv(file_name))
-    # print("Actions :\n", list_of_actions)
-    print("The price of all actions :", actions_price(list_of_actions), "€")
-    print("The profit of all actions :", actions_profit(list_of_actions), "€")
-    return best_invest(list_of_actions)
 
 
 def choose_file() -> str:
@@ -73,11 +66,15 @@ def choose_file() -> str:
         return choose_file()
 
 
-if __name__ == "__main__":
+def best_invest_result():
     csv_file = choose_file()
     start = time.time()
-    result = optimized_invest(csv_file)
-    # Display the data of best actions to buy with 500 € for the best combination
-    display_result(result)
+    result = best_invest(csv_file)
+    # Display the data of best actions to buy with 500 €
+    display_result(csv_file, result)
     end = time.time()
-    print("\nDuration of program running :", end - start, "seconds.")
+    print("\nDuration of program running :", round(end-start, 4), "seconds.")
+
+
+if __name__ == "__main__":
+    best_invest_result()
