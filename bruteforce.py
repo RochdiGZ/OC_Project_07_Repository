@@ -36,9 +36,9 @@ def display_result(file_name, best_actions: list):
 
     # sort by price the data of best actions to buy
     best_actions = sorted(best_actions, key=lambda d: d[1], reverse=True)
-    print("\nThe data of", len(best_actions), "best actions :")
+    print("\nThe", len(best_actions), "best actions to buy :")
     for action in best_actions:
-        print(action)
+        print(action[0])
 
     print("\nTotal cost :", actions_price(best_actions), "€")
 
@@ -69,7 +69,7 @@ def brute_force_result():
     # Display the data of best actions to buy with 500 € for the best combination
     display_result(csv_file, result)
     end = time.time()
-    print("\nDuration of program running :", round(end-start, 2), "seconds.")
+    print("\nDuration of program running :", round(end-start, 4), "seconds.")
 
 
 if __name__ == "__main__":
