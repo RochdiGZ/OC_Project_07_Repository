@@ -8,7 +8,7 @@ class Action:
         self.profit = profit
 
     def __str__(self) -> str:
-        return f"{self.name}, {self.price}, {self.profit}"
+        return f"{self.name}, {self.price} €, {self.profit} €"
 
 
 class Algorithm:
@@ -19,11 +19,11 @@ class Algorithm:
 
     @classmethod
     def bruteforce(cls, i: int = 0):
-        return cls(file_name="dataset" + str(i), max_cost=5000)
+        return cls(file_name="dataset" + str(i), max_cost=500)
 
     @classmethod
     def optimized(cls, i: int = 0):
-        return cls(file_name="dataset" + str(i), max_cost=500000)
+        return cls(file_name="dataset" + str(i), max_cost=50000)
 
     def get_data_csv(self) -> list:
         with open(f"dataset/{self.file_name}.csv", "r", encoding="utf-8") as f:
@@ -34,7 +34,8 @@ class Algorithm:
             for row in data_csv:
                 name = row[0]
                 price = float(row[1])
-                profit = float(row[2])
+                # profit in €
+                profit = float(row[1]) * float(row[2]) / 100
                 if price > 0 and profit > 0:
                     action = Action(name, price, profit)
                     actions.append(action)
@@ -55,19 +56,21 @@ class Algorithm:
 
     @staticmethod
     def total_profit(actions: list) -> float:
-        return round(sum([action.profit * action.price / 100 for action in actions]), 2)
+        return round(sum([action.profit for action in actions]), 2)
 
     def display_total_profit(self, actions: list):
         print("Total profit :", self.total_profit(actions), "€")
 
     @staticmethod
-    def multiply_price(actions: list) -> list:
+    def multiply_per_100(actions: list) -> list:
         for action in actions:
             action.price = int(action.price * 100)
+            action.profit = action.profit * 100
         return actions
 
     @staticmethod
-    def divide_price(actions) -> list:
+    def divide_per_100(actions) -> list:
         for action in actions:
-            action.price = int(action.price / 100)
+            action.price = float(action.price / 100)
+            action.profit = round(action.profit / 100, 2)
         return actions

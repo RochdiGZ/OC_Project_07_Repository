@@ -3,7 +3,7 @@ from itertools import combinations
 from algorithm import Algorithm
 
 
-def brute_force(actions: list, max_cost: int = 5000) -> list:
+def brute_force(actions: list, max_cost: int = 500) -> list:
     best_combination = []
     max_profit = 0
     for i in range(1, len(actions) + 1):
