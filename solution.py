@@ -11,7 +11,7 @@ class Action:
         return f"{self.name}, {self.price} €, {self.profit} €"
 
 
-class Algorithm:
+class Solution:
     def __init__(self, file_name: str, max_cost: int):
         self.file_name = file_name
         self.max_cost = max_cost
@@ -41,25 +41,20 @@ class Algorithm:
                     actions.append(action)
         return actions
 
-    @staticmethod
-    def display_names(actions: list):
+    def display_result(self, actions: list):
         print(len(actions), "selected actions to buy :")
         for action in actions:
             print(action.name)
+        print("Total cost :", self.total_cost(actions), "€")
+        print("Total profit :", self.total_profit(actions), "€")
 
     @staticmethod
     def total_cost(actions: list) -> float:
         return round(sum([action.price for action in actions]), 2)
 
-    def display_total_cost(self, actions: list):
-        print("Total cost :", self.total_cost(actions), "€")
-
     @staticmethod
     def total_profit(actions: list) -> float:
         return round(sum([action.profit for action in actions]), 2)
-
-    def display_total_profit(self, actions: list):
-        print("Total profit :", self.total_profit(actions), "€")
 
     @staticmethod
     def multiply_per_100(actions: list) -> list:
