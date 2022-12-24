@@ -5,26 +5,25 @@ from solution import Solution
 
 def brute_force(actions: list, max_cost: int = 500) -> list:
     best_combination = []
-    max_profit = 0
+    max_profit_euro = 0
     for i in range(1, len(actions) + 1):
         for combination in combinations(actions, i):
-            # get a total cost for each combination
+            # get a total cost for each list of combinations
             cost = Solution.total_cost(list(combination))
-            if cost <= max_cost:
-                # get a total profit for each combination
-                profit = Solution.total_profit(list(combination))
-                if profit > max_profit:
-                    max_profit = profit
-                    best_combination = combination
+            # get a total profit in € for each list of combinations
+            profit_euro = Solution.total_profit_euro(list(combination))
+            if cost <= max_cost and profit_euro > max_profit_euro:
+                max_profit_euro = profit_euro
+                best_combination = list(combination)
     return best_combination
 
 
-def brute_force_result():
-    print("\nRunning the Brute Force Algorithm using dataset0.csv")
+def brute_force_result(i: int = 0):
+    print("\n********** Running of Brute Force program with the use of dataset" + str(i) + ".csv **********")
     solution = Solution.bruteforce()
     start = time.time()
-    selected_actions = brute_force(solution.actions)
+    solution.best_actions = brute_force(solution.actions)
     # Display the data of selected actions to buy
-    solution.display_result(selected_actions)
+    solution.display_result()
     end = time.time()
-    print("Duration of program running :", round(end - start, 2), "seconds.")
+    print("  ** Duration of Brute Force program running :", round(end - start, 2), "seconds.")

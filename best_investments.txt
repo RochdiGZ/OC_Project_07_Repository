@@ -1,0 +1,107 @@
+********** Running of Brute Force program with the use of dataset0.csv **********
+
+  * 10 selected actions to buy :
+        * Action-4, 70.0 €, 14.0 %, 14.0 €
+        * Action-5, 60.0 €, 10.2 %, 10.2 €
+        * Action-6, 80.0 €, 20.0 %, 20.0 €
+        * Action-8, 26.0 €, 2.86 %, 2.86 €
+        * Action-10, 34.0 €, 9.18 %, 9.18 €
+        * Action-11, 42.0 €, 7.14 %, 7.14 €
+        * Action-13, 38.0 €, 8.74 %, 8.74 €
+        * Action-18, 10.0 €, 1.4 %, 1.4 €
+        * Action-19, 24.0 €, 5.04 %, 5.04 €
+        * Action-20, 114.0 €, 20.52 %, 20.52 €
+
+        * * * * * * * * * * * * * * * * * * * *
+        *    Total cost : 498.0 €
+        *    Total profit : 99.08 €
+        * * * * * * * * * * * * * * * * * * * *
+
+  ** Duration of Brute Force program running : 2.44 seconds.
+
+********** Running of optimized program with the use of dataset0.csv **********
+
+  * 10 selected actions to buy :
+        * Action-20, 114.0 €, 20.52 %, 20.52 €
+        * Action-19, 24.0 €, 5.04 %, 5.04 €
+        * Action-18, 10.0 €, 1.4 %, 1.4 €
+        * Action-13, 38.0 €, 8.74 %, 8.74 €
+        * Action-11, 42.0 €, 7.14 %, 7.14 €
+        * Action-10, 34.0 €, 9.18 %, 9.18 €
+        * Action-8, 26.0 €, 2.86 %, 2.86 €
+        * Action-6, 80.0 €, 20.0 %, 20.0 €
+        * Action-5, 60.0 €, 10.2 %, 10.2 €
+        * Action-4, 70.0 €, 14.0 %, 14.0 €
+
+        * * * * * * * * * * * * * * * * * * * *
+        *    Total cost : 498.0 €
+        *    Total profit : 99.08 €
+        * * * * * * * * * * * * * * * * * * * *
+
+  ** Duration of optimized program running : 0.4 seconds.
+
+********** Running of optimized program with the use of dataset1.csv **********
+
+  * 22 selected actions to buy :
+        * Share-KMTG, 23.21 €, 9.28 %, 9.28 €
+        * Share-GHIZ, 28.0 €, 11.17 %, 11.17 €
+        * Share-NHWA, 29.18 €, 11.6 %, 11.6 €
+        * Share-UEZB, 24.87 €, 9.81 %, 9.81 €
+        * Share-LPDM, 39.35 €, 15.63 %, 15.63 €
+        * Share-MTLR, 16.48 €, 6.59 %, 6.59 €
+        * Share-USSR, 25.62 €, 10.14 %, 10.14 €
+        * Share-GTQK, 15.4 €, 6.15 %, 6.15 €
+        * Share-FKJW, 21.08 €, 8.39 %, 8.39 €
+        * Share-MLGM, 0.01 €, 0.0 %, 0.0 €
+        * Share-QLMK, 17.38 €, 6.86 %, 6.86 €
+        * Share-WPLI, 34.64 €, 13.82 %, 13.82 €
+        * Share-LGWG, 31.41 €, 12.41 %, 12.41 €
+        * Share-ZSDE, 15.11 €, 6.03 %, 6.03 €
+        * Share-SKKC, 24.87 €, 9.82 %, 9.82 €
+        * Share-QQTU, 33.19 €, 13.14 %, 13.14 €
+        * Share-GIAJ, 10.75 €, 4.29 %, 4.29 €
+        * Share-XJMO, 9.39 €, 3.75 %, 3.75 €
+        * Share-LRBZ, 32.9 €, 13.14 %, 13.14 €
+        * Share-KZBL, 28.99 €, 11.35 %, 11.35 €
+        * Share-EMOV, 8.89 €, 3.51 %, 3.51 €
+        * Share-IFCP, 29.23 €, 11.66 %, 11.66 €
+
+        * * * * * * * * * * * * * * * * * * * *
+        *    Total cost : 499.95 €
+        *    Total profit : 198.54 €
+        * * * * * * * * * * * * * * * * * * * *
+
+  ** Duration of optimized program running : 21.74 seconds.
+
+********** Running of optimized program with the use of dataset2.csv **********
+
+  * 20 selected actions to buy :
+        * Share-ECAQ, 31.66 €, 12.5 %, 12.5 €
+        * Share-IXCI, 26.32 €, 10.37 %, 10.37 €
+        * Share-FWBE, 18.3 €, 7.29 %, 7.29 €
+        * Share-ZOFA, 25.32 €, 10.07 %, 10.07 €
+        * Share-PLLK, 19.94 €, 7.96 %, 7.96 €
+        * Share-LXZU, 4.24 €, 1.68 %, 1.68 €
+        * Share-YFVZ, 22.55 €, 8.82 %, 8.82 €
+        * Share-ANFX, 38.54 €, 15.31 %, 15.31 €
+        * Share-PATS, 27.7 €, 11.07 %, 11.07 €
+        * Share-SCWM, 6.42 €, 2.45 %, 2.45 €
+        * Share-NDKR, 33.06 €, 13.19 %, 13.19 €
+        * Share-ALIY, 29.08 €, 11.61 %, 11.61 €
+        * Share-JWGF, 48.69 €, 19.44 %, 19.44 €
+        * Share-JGTW, 35.29 €, 13.91 %, 13.91 €
+        * Share-FAPS, 32.57 €, 12.88 %, 12.88 €
+        * Share-VCAX, 27.42 €, 10.69 %, 10.69 €
+        * Share-LFXB, 14.83 €, 5.9 %, 5.9 €
+        * Share-DWSK, 29.49 €, 11.6 %, 11.6 €
+        * Share-XQII, 13.42 €, 5.3 %, 5.3 €
+        * Share-ROOM, 15.06 €, 5.91 %, 5.91 €
+
+        * * * * * * * * * * * * * * * * * * * *
+        *    Total cost : 499.9 €
+        *    Total profit : 197.95 €
+        * * * * * * * * * * * * * * * * * * * *
+
+  ** Duration of optimized program running : 12.09 seconds.
+
+Process finished with exit code 0
