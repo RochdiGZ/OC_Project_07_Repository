@@ -9,7 +9,8 @@ class Action:
         self.profit_euro = self.price * self.profit / 100
 
     def __str__(self) -> str:
-        return f"        * {self.name}, {self.price} €, {self.profit_euro} %, {self.profit_euro} €"
+        return f"        * {self.name}, {round(self.price, 2)} €, {round(self.profit, 2)} %," \
+               f"{round(self.profit_euro, 2)} €"
 
 
 class Solution:
@@ -40,6 +41,10 @@ class Solution:
     @classmethod
     def optimized(cls, i: int = 0):
         return cls(file_name="dataset" + str(i), max_cost=50000)
+
+    @classmethod
+    def sienna(cls, i: int):
+        return cls(file_name="sienna" + str(i), max_cost=50000)
 
     def get_data_csv(self) -> list:
         with open(f"dataset/{self.file_name}.csv", "r", encoding="utf-8") as f:
