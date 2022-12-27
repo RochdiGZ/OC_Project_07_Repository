@@ -9,7 +9,7 @@ class Action:
         self.profit_euro = self.price * self.profit / 100
 
     def __str__(self) -> str:
-        return f"        * {self.name}, {round(self.price, 2)} €, {round(self.profit, 2)} %," \
+        return f"        * {self.name}, {round(self.price, 2)} €, {round(self.profit, 2)} %, " \
                f"{round(self.profit_euro, 2)} €"
 
 
@@ -61,6 +61,15 @@ class Solution:
                     action = Action(name, price, profit)
                     actions.append(action)
         return actions
+
+    """
+    @staticmethod
+    def get_data(actions: list, n: int = 20) -> list:
+        actions_n = []
+        for i in range(n):
+            actions_n.append(actions[i])
+        return actions_n
+    """
 
     @staticmethod
     def total_cost(actions: list) -> float:
