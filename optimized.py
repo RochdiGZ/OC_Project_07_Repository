@@ -1,5 +1,6 @@
 import time
 from solution import Solution
+from tqdm import tqdm
 
 
 def knapsack(actions: list, max_cost: int) -> list:
@@ -7,10 +8,10 @@ def knapsack(actions: list, max_cost: int) -> list:
     m = [[float(0) for _ in range(max_cost + 1)] for _ in range(n + 1)]
 
     # Build matrix which contains max profits in € for each combination of n actions
-    for r in range(1, n + 1):
+    for r in tqdm(range(1, n + 1)):
         for c in range(1, max_cost + 1):
             action = actions[r - 1]
-            if c >= action.price :
+            if c >= action.price:
                 a = m[r - 1][c]
                 b = m[r - 1][c - action.price] + action.profit_euro
                 m[r][c] = max(a, b)
@@ -22,14 +23,11 @@ def knapsack(actions: list, max_cost: int) -> list:
     c = max_cost
     r = len(actions)
     selected_actions = []
-    while c > 0 and r >= 0:
-        action = actions[r - 1]
-        if c >= action.price:
-            a = m[r][c]
-            b = m[r - 1][c - action.price] + action.profit_euro
-            if a == b:
-                selected_actions.append(action)
-                c -= action.price
+    while c > 0 and r > 0:
+        i = r - 1
+        if m[r][c] != m[i][c]:
+            selected_actions.append(actions[i])
+            c -= actions[i].price
         r -= 1
 
     return selected_actions
