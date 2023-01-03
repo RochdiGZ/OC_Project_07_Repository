@@ -39,7 +39,7 @@ def knapsack_result(i: int):
     solution = Solution.optimized(i)
     start = time.time()
     solution.best_actions = knapsack(solution.actions, 500)
+    end = time.time()
     # Display the data of selected actions to buy
     solution.display_result()
-    end = time.time()
     print("  ** Duration of optimized program running :", round(end - start, 2), "seconds.")
