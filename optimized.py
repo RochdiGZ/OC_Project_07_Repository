@@ -8,7 +8,7 @@ def knapsack(actions: list, max_cost: int) -> list:
     m = [[float(0) for _ in range(max_cost + 1)] for _ in range(n + 1)]
 
     # Build matrix which contains max profits in € for each combination of n actions
-    for r in tqdm(range(1, n + 1)):
+    for r in tqdm(range(1, n + 1), desc="Running of optimized program"):
         for c in range(1, max_cost + 1):
             action = actions[r - 1]
             if c >= action.price:
@@ -33,15 +33,12 @@ def knapsack(actions: list, max_cost: int) -> list:
     return selected_actions
 
 
-def knapsack_result(i: int = 0):
+def knapsack_result(i: int):
+    print("\n****************************** Running of optimized program ******************************")
     print("\n********** Running of optimized program with the use of dataset" + str(i) + ".csv **********")
     solution = Solution.optimized(i)
-    # Update prices and profits of actions (multiply each price per 100 and multiply each profit per 100)
-    actions = solution.multiply_per_100(solution.actions)
     start = time.time()
-    selected_actions = knapsack(actions, 50000)
-    # Update prices and profits of selected actions (divide each price per 100 and divide each profit per 100)
-    solution.best_actions = solution.divide_per_100(selected_actions)
+    solution.best_actions = knapsack(solution.actions, 500)
     # Display the data of selected actions to buy
     solution.display_result()
     end = time.time()

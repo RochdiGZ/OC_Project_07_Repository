@@ -1,15 +1,15 @@
 import time
 from itertools import combinations
 from solution import Solution
-from tqdm import tqdm
-# from math import factorial
+from tqdm.auto import tqdm
+import tracemalloc
 
 
 def brute_force(actions: list, max_cost: int = 500) -> list:
     best_combination = []
     max_profit_euro = 0
     n = len(actions)
-    for p in tqdm(range(1, n + 1)):
+    for p in tqdm(range(1, n + 1), desc="Running of Brute Force program"):
         # Number of possible combinations = {factorial(n) // (factorial(p) * factorial(n - p))}
         for combination in combinations(actions, p):
             # get a total cost for each list of combinations
@@ -27,9 +27,13 @@ def brute_force(actions: list, max_cost: int = 500) -> list:
 def brute_force_result(i: int = 0):
     print("\n********** Running of Brute Force program with the use of dataset" + str(i) + ".csv **********")
     solution = Solution.bruteforce()
+    # starting the monitoring
+    tracemalloc.start()
     start = time.time()
     solution.best_actions = brute_force(solution.actions)
-    # Display the data of selected actions to buy
-    solution.display_result()
     end = time.time()
     print("  ** Duration of Brute Force program running :", round(end - start, 2), "seconds.")
+
+    # Display the data of selected actions to buy
+    solution.display_result()
+

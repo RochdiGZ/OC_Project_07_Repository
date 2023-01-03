@@ -40,11 +40,11 @@ class Solution:
 
     @classmethod
     def optimized(cls, i: int = 0):
-        return cls(file_name="dataset" + str(i), max_cost=50000)
+        return cls(file_name="dataset" + str(i), max_cost=500)
 
     @classmethod
     def sienna(cls, i: int):
-        return cls(file_name="sienna" + str(i), max_cost=50000)
+        return cls(file_name="sienna" + str(i), max_cost=500)
 
     def get_data_csv(self) -> list:
         with open(f"dataset/{self.file_name}.csv", "r", encoding="utf-8") as f:
@@ -54,7 +54,7 @@ class Solution:
             actions = []
             for row in data_csv:
                 name = row[0]
-                price = float(row[1])
+                price = round(float(row[1]))
                 profit = float(row[2])
                 profit_euro = price * profit / 100
                 if price > 0 and profit_euro > 0:
@@ -78,17 +78,3 @@ class Solution:
     @staticmethod
     def total_profit_euro(actions: list) -> float:
         return round(sum([action.profit_euro for action in actions]), 2)
-
-    @staticmethod
-    def multiply_per_100(actions: list) -> list:
-        for action in actions:
-            action.price = int(action.price * 100)
-            action.profit_euro = action.profit_euro * 100
-        return actions
-
-    @staticmethod
-    def divide_per_100(actions) -> list:
-        for action in actions:
-            action.price = float(int(action.price) / 100)
-            action.profit_euro = round(action.profit_euro / 100, 2)
-        return actions
